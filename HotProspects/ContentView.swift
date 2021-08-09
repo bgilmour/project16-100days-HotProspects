@@ -9,7 +9,84 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabsTest2View()
+        ResultTest2View()
+    }
+}
+
+enum NetworkError: Error {
+    case badURL, requestFailed, unknown
+}
+
+struct ResultTest2View: View {
+    var body: some View {
+        Text("Hello, world!")
+            .onAppear {
+                fetchData(from: "https://www.apple.com") { result in
+                    switch result {
+                    case .success(let str):
+                        print(str)
+                    case .failure(let error):
+                        switch error {
+                        case .badURL:
+                            print("Bad URL")
+                        case .requestFailed:
+                            print("Network problems")
+                        case .unknown:
+                            print("Unknown error")
+                        }
+                    }
+                }
+            }
+    }
+
+    func fetchData(from urlString: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
+        guard let url = URL(string: "https://www.apple.com") else {
+            completion(.failure(.badURL))
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                if let data = data {
+                    let stringData = String(decoding: data, as: UTF8.self)
+                    completion(.success(stringData))
+                } else if error != nil {
+                    completion(.failure(.requestFailed))
+                } else {
+                    completion(.failure(.unknown))
+                }
+            }
+        }.resume()
+    }
+
+    func fetchData3(from urlString: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
+        DispatchQueue.main.async {
+            completion(.failure(.badURL))
+        }
+    }
+
+    func fetchData2(from urlString: String, completion: (Result<String, NetworkError>) -> Void) {
+        completion(.failure(.badURL))
+    }
+
+    func fetchData1(from urlString: String) -> Result<String, NetworkError> {
+        .failure(.badURL)
+    }
+}
+
+struct ResultTest1View: View {
+    var body: some View {
+        Text("Hello, world!")
+            .onAppear {
+                let url = URL(string: "https://www.apple.com")!
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    if data != nil {
+                        print("We got data!")
+                    } else if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }.resume()
+            }
     }
 }
 
