@@ -9,7 +9,30 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        AsyncTest1View()
+        InterpolationTest2View()
+    }
+}
+
+struct InterpolationTest2View: View {
+    var body: some View {
+        Image("example")
+            .interpolation(.none)
+            .resizable()
+            .scaledToFit()
+            .frame(height: .infinity)
+            .background(Color.black)
+            .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct InterpolationTest1View: View {
+    var body: some View {
+        Image("example")
+            .resizable()
+            .scaledToFit()
+            .frame(height: .infinity)
+            .background(Color.black)
+            .edgesIgnoringSafeArea(.all)
     }
 }
 
