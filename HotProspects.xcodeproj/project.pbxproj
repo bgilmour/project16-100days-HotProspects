@@ -13,6 +13,7 @@
 		3E738D8026C18771004100EB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E738D7F26C18771004100EB /* Preview Assets.xcassets */; };
 		3E738D8D26C1E0C6004100EB /* ProspectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E738D8C26C1E0C6004100EB /* ProspectsView.swift */; };
 		3E738D9126C1E0D4004100EB /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E738D9026C1E0D4004100EB /* MeView.swift */; };
+		3E738D9426C1E45B004100EB /* Prospect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E738D9326C1E45B004100EB /* Prospect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3E738D8126C18771004100EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E738D8C26C1E0C6004100EB /* ProspectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProspectsView.swift; sourceTree = "<group>"; };
 		3E738D9026C1E0D4004100EB /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
+		3E738D9326C1E45B004100EB /* Prospect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prospect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				3E738D7826C1876C004100EB /* HotProspectsApp.swift */,
 				3E738D7A26C1876C004100EB /* ContentView.swift */,
+				3E738D9326C1E45B004100EB /* Prospect.swift */,
 				3E738D8C26C1E0C6004100EB /* ProspectsView.swift */,
 				3E738D9026C1E0D4004100EB /* MeView.swift */,
 				3E738D7C26C18771004100EB /* Assets.xcassets */,
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E738D9126C1E0D4004100EB /* MeView.swift in Sources */,
+				3E738D9426C1E45B004100EB /* Prospect.swift in Sources */,
 				3E738D8D26C1E0C6004100EB /* ProspectsView.swift in Sources */,
 				3E738D7B26C1876C004100EB /* ContentView.swift in Sources */,
 				3E738D7926C1876C004100EB /* HotProspectsApp.swift in Sources */,

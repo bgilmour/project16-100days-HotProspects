@@ -14,10 +14,21 @@ struct ProspectsView: View {
 
     let filter: FilterType
 
+    @EnvironmentObject var prospects: Prospects
+
     var body: some View {
         NavigationView {
-            Text("Hello, world!")
+            Text("People: \(prospects.people.count)")
                 .navigationBarTitle(title)
+                .navigationBarItems(trailing: Button(action: {
+                    let prospect = Prospect()
+                    prospect.name = "Bruce Gilmour"
+                    prospect.emailAddress = "bruce.gilmour@langtoun.com"
+                    prospects.people.append(prospect)
+                }) {
+                    Image(systemName: "qrcode.viewfinder")
+                    Text("Scan")
+                })
         }
     }
 
