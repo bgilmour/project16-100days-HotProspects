@@ -9,7 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ResultTest2View()
+        AsyncTest1View()
+    }
+}
+
+struct AsyncTest1View: View {
+    @ObservedObject var updater = DelayedUpdater()
+
+    var body: some View {
+        Text("Value is: \(updater.value)")
+    }
+}
+
+class DelayedUpdater: ObservableObject {
+    var value = 0 {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+
+    init() {
+        for i in 1 ... 10 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)) {
+                self.value += 1
+            }
+        }
     }
 }
 
