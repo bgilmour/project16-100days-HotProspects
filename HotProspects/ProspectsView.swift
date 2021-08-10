@@ -18,6 +18,13 @@ struct ProspectsView: View {
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
 
+    static let examples = [
+        "Billie Eilish\nbillie@eilish.com",
+        "Taylor Swift\ntaylor@swift.com",
+        "Dua Lipa\ndua@lipa.com",
+        "Lady Gaga\ngaga@monsters.com"
+    ]
+
     var body: some View {
         NavigationView {
             List {
@@ -43,7 +50,7 @@ struct ProspectsView: View {
                 Text("Scan")
             })
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "Bruce Gilmour\nbruce.gilmour@langtoun.com", completion: handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: Self.examples[Int.random(in: 0 ..< Self.examples.count)], completion: handleScan)
             }
         }
     }
@@ -81,7 +88,7 @@ struct ProspectsView: View {
             person.name = details[0]
             person.emailAddress = details[1]
 
-            prospects.people.append(person)
+            prospects.add(person)
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")
         }
