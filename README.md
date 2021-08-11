@@ -6,4 +6,4 @@ Challenge 1 was to add an indicator (a small envelope following the name in my c
 
 In challenge 2 we were required to change the storage location from UserDefaults to the document directory.
 
-CHallenge 3 required us to add an action sheet to allow the user to choose whether to order prospects either by name or most recent addition.
+Challenge 3 required us to add an action sheet to allow the user to choose whether to order prospects either by name or most recent addition.
