@@ -14,10 +14,16 @@ struct ProspectsView: View {
         case none, contacted, uncontacted
     }
 
+    enum SortedBy {
+        case name, timestamp
+    }
+
     let filter: FilterType
 
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
+    @State private var isShowingSortOptions = false
+    @State private var sortedBy = SortedBy.name
 
     static let examples = [
         "Billie Eilish\nbillie@eilish.com",
@@ -53,14 +59,28 @@ struct ProspectsView: View {
                 }
             }
             .navigationBarTitle(title)
-            .navigationBarItems(trailing: Button(action: {
-                isShowingScanner = true
-            }) {
-                Image(systemName: "qrcode.viewfinder")
-                Text("Scan")
-            })
+            .navigationBarItems(
+                leading: Button(action: {
+                    isShowingSortOptions = true
+                }) {
+                    Image(systemName: "arrow.up.arrow.down")
+                },
+                trailing: Button(action: {
+                    isShowingScanner = true
+                }) {
+                    Image(systemName: "qrcode.viewfinder")
+                    Text("Scan")
+                }
+            )
             .sheet(isPresented: $isShowingScanner) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: Self.examples[Int.random(in: 0 ..< Self.examples.count)], completion: handleScan)
+            }
+            .actionSheet(isPresented: $isShowingSortOptions) {
+                ActionSheet(title: Text("Sort By"), buttons: [
+                    .default(Text("Contact Name")) { sortedBy = .name },
+                    .default(Text("Most Recent")) { sortedBy = .timestamp },
+                    .cancel()
+                ])
             }
         }
     }
@@ -77,13 +97,18 @@ struct ProspectsView: View {
     }
 
     var filteredProspects: [Prospect] {
+        let comparator: (Prospect, Prospect) -> Bool =
+            sortedBy == .name
+                ? { $0.name < $1.name }
+                : { $0.timestamp > $1.timestamp }
+
         switch filter {
         case .none:
-            return prospects.people
+            return prospects.people.sorted(by: comparator)
         case .contacted:
-            return prospects.people.filter { $0.isContacted }
+            return prospects.people.filter { $0.isContacted }.sorted(by: comparator)
         case .uncontacted:
-            return prospects.people.filter { !$0.isContacted }
+            return prospects.people.filter { !$0.isContacted }.sorted(by: comparator)
         }
     }
 
