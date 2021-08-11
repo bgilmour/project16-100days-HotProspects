@@ -31,8 +31,12 @@ struct ProspectsView: View {
             List {
                 ForEach(filteredProspects) { prospect in
                     VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
+                        HStack {
+                            Text(prospect.name)
+                            contactedMarker(prospect)
+                        }
+                        .font(.headline)
+
                         Text(prospect.emailAddress)
                             .foregroundColor(.secondary)
                     }
@@ -81,6 +85,13 @@ struct ProspectsView: View {
         case .uncontacted:
             return prospects.people.filter { !$0.isContacted }
         }
+    }
+
+    func contactedMarker(_ prospect: Prospect) -> Image? {
+        if filter == .none && prospect.isContacted {
+            return Image(systemName: "envelope")
+        }
+        return nil
     }
 
     func handleScan(result: Result<String, CodeScannerView.ScanError>) {
