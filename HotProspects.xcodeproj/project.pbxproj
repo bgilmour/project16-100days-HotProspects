@@ -15,6 +15,7 @@
 		3E738D9126C1E0D4004100EB /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E738D9026C1E0D4004100EB /* MeView.swift */; };
 		3E738D9426C1E45B004100EB /* Prospect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E738D9326C1E45B004100EB /* Prospect.swift */; };
 		3E738D9826C1F47A004100EB /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 3E738D9726C1F47A004100EB /* CodeScanner */; };
+		3E738D9B26C34E9F004100EB /* FileManager-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E738D9A26C34E9F004100EB /* FileManager-extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		3E738D8C26C1E0C6004100EB /* ProspectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProspectsView.swift; sourceTree = "<group>"; };
 		3E738D9026C1E0D4004100EB /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		3E738D9326C1E45B004100EB /* Prospect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prospect.swift; sourceTree = "<group>"; };
+		3E738D9A26C34E9F004100EB /* FileManager-extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				3E738D7A26C1876C004100EB /* ContentView.swift */,
 				3E738D9326C1E45B004100EB /* Prospect.swift */,
 				3E738D8C26C1E0C6004100EB /* ProspectsView.swift */,
+				3E738D9A26C34E9F004100EB /* FileManager-extension.swift */,
 				3E738D9026C1E0D4004100EB /* MeView.swift */,
 				3E738D7C26C18771004100EB /* Assets.xcassets */,
 				3E738D8126C18771004100EB /* Info.plist */,
@@ -160,6 +163,7 @@
 				3E738D8D26C1E0C6004100EB /* ProspectsView.swift in Sources */,
 				3E738D7B26C1876C004100EB /* ContentView.swift in Sources */,
 				3E738D7926C1876C004100EB /* HotProspectsApp.swift in Sources */,
+				3E738D9B26C34E9F004100EB /* FileManager-extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

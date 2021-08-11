@@ -20,19 +20,24 @@ class Prospects: ObservableObject {
     static let saveKey = "SavedData"
 
     init() {
-        if let data = UserDefaults.standard.data(forKey: Self.saveKey) {
-            if let decoded = try? JSONDecoder().decode([Prospect].self, from: data) {
-                self.people = decoded
-                return
-            }
-        }
+        let filename = FileManager.default.getDocumentsDirectory().appendingPathComponent(Self.saveKey)
 
-        self.people = []
+        do {
+            let data = try Data(contentsOf: filename)
+            people = try JSONDecoder().decode([Prospect].self, from: data)
+        } catch {
+            print("Unable to load saved data: \(error.localizedDescription)")
+            people = []
+        }
     }
 
     private func save() {
-        if let encoded = try? JSONEncoder().encode(people) {
-            UserDefaults.standard.setValue(encoded, forKey: Self.saveKey)
+        let filename = FileManager.default.getDocumentsDirectory().appendingPathComponent(Self.saveKey)
+        do {
+            let data = try JSONEncoder().encode(people)
+            try data.write(to: filename, options: [.atomicWrite])
+        } catch {
+            print("Unable to save data: \(error.localizedDescription)")
         }
     }
 
